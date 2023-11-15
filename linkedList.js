@@ -18,22 +18,20 @@ class LinkedList {
   }
 
   prepend(value) {
-    let current = this.head; //a
-    // console.log(current);
+    let current = this.head;
     if (this.head !== null) {
-      //execute
-      this.head = new Node(value); //a = 3
+      this.head = new Node(value);
     }
-    this.head.next = current; //a = head.next
+    this.head.next = current;
     this.length++;
   }
 
   size() {
-    console.log(this.length);
+    return this.length;
   }
 
   getHead() {
-    console.log(this.head);
+    return this.head;
   }
 
   getTail() {
@@ -44,7 +42,18 @@ class LinkedList {
     while (current.next) {
       current = current.next;
     }
-    console.log(current);
+    return current;
+  }
+
+  at(index) {
+    if (index < 0 || index >= this.length) return null;
+    let count = 0;
+    let current = this.head;
+    while (count !== index) {
+      current = current.next;
+      count++;
+    }
+    return current;
   }
 
   pop() {
@@ -63,11 +72,21 @@ class LinkedList {
     }
     return current;
   }
-}
 
-// contains(value) {}
-// find(value) {}
-// toString() {}
+  contains(value) {
+    let current = this.head;
+    while (current) {
+      if (current.value === value) {
+        return true;
+      }
+      current = current.next;
+    }
+    return false;
+  }
+
+  find(value) {} //returns the index of the node containing value, or null if not found.
+  toString() {} //represents your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> null
+}
 
 class Node {
   constructor(value, next) {
@@ -77,37 +96,35 @@ class Node {
 }
 
 let list = new LinkedList();
-list.append("A");
-list.append("B");
-list.append("C");
-list.append("D");
-list.append("E");
-list.append("F");
+list.append("A"); //  A
+list.append("B"); //  A, B
+list.append("C"); //  A, B, C
 
-// list.prepend(3);
-// list.prepend(2);
-// list.prepend(1);
+list.prepend(3); // 3, A, B, C
+list.prepend(2); // 2, 3, A, B, C
+list.prepend(1); // 1, 2, 3, A, B, C
 
-// list.append("tail");
-// list.prepend("head");
+console.log("------getHead------");
+console.log(list.getHead()); // 1
 
-// list.prepend("A");
-// list.prepend("B");
-// list.prepend("C");
-// list.prepend("D");
-// list.prepend("E");
-// list.prepend("F");
+console.log("------getTail------");
+console.log(list.getTail()); // C
 
-// console.log("--------GET_HEAD-----------------");
-// list.getHead();
-// // list.getTail();
-// console.log("--------SIZE-----------------");
-// list.size();
-// console.log("--------POP-----------------");
-// list.pop();
-// console.log("--------SIZE-----------------");
-// list.size();
-// console.log("--------GET_TAIL-----------------");
-// list.getTail();
-console.log("--------LISTA-----------------");
+console.log("------size------");
+console.log(list.size()); // 6
+
+console.log("------at(index)------");
+console.log(list.at(0)); // 1
+console.log(list.at(5)); // C
+
+console.log("------pop------");
+console.log(list.pop()); // 1, 2, 3, A, B, C >>> 1, 2, 3, A, B
+
+console.log("------contains------");
+console.log(list.contains(1)); // true
+console.log(list.contains(2)); // true
+console.log(list.contains("C")); // false
+console.log(list.contains("asd")); // false
+
+console.log("------list------");
 console.log(list);
