@@ -98,7 +98,14 @@ class LinkedList {
   }
 
   toString() {
-    //represents your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> null
+    let current = this.head;
+    let string = "";
+    while (current) {
+      string += `(${current.value}) -> `;
+      current = current.next;
+    }
+    string += "null";
+    return string;
   }
 }
 
@@ -140,10 +147,12 @@ list.prepend(1); // 1, 2, 3, A, B, C
 // console.log(list.contains("C")); // false
 // console.log(list.contains("asd")); // false
 
+// console.log(list.find(1)); // 0
+// console.log(list.find("B")); // 4
+// console.log(list.find(4)); // null
+// console.log(list.find("D")); // null
+
+// console.log(list.toString()); //(1) -> (2) -> (3) -> (A) -> (B) -> (C) -> null
+
 // console.log("------list------");
 // console.log(list);
-
-console.log(list.find(1));
-console.log(list.find("A"));
-console.log(list.find("B"));
-console.log(list.find(3));
