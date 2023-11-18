@@ -84,8 +84,22 @@ class LinkedList {
     return false;
   }
 
-  find(value) {} //returns the index of the node containing value, or null if not found.
-  toString() {} //represents your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> null
+  find(value) {
+    let current = this.head;
+    let index = 0;
+    while (current) {
+      if (current.value === value) {
+        return index;
+      }
+      current = current.next;
+      index++;
+    }
+    return null;
+  }
+
+  toString() {
+    //represents your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> null
+  }
 }
 
 class Node {
@@ -104,27 +118,32 @@ list.prepend(3); // 3, A, B, C
 list.prepend(2); // 2, 3, A, B, C
 list.prepend(1); // 1, 2, 3, A, B, C
 
-console.log("------getHead------");
-console.log(list.getHead()); // 1
+// console.log("------getHead------");
+// console.log(list.getHead()); // 1
 
-console.log("------getTail------");
-console.log(list.getTail()); // C
+// console.log("------getTail------");
+// console.log(list.getTail()); // C
 
-console.log("------size------");
-console.log(list.size()); // 6
+// console.log("------size------");
+// console.log(list.size()); // 6
 
-console.log("------at(index)------");
-console.log(list.at(0)); // 1
-console.log(list.at(5)); // C
+// console.log("------at(index)------");
+// console.log(list.at(0)); // 1
+// console.log(list.at(5)); // C
 
-console.log("------pop------");
-console.log(list.pop()); // 1, 2, 3, A, B, C >>> 1, 2, 3, A, B
+// console.log("------pop------");
+// console.log(list.pop()); // 1, 2, 3, A, B, C >>> 1, 2, 3, A, B
 
-console.log("------contains------");
-console.log(list.contains(1)); // true
-console.log(list.contains(2)); // true
-console.log(list.contains("C")); // false
-console.log(list.contains("asd")); // false
+// console.log("------contains------");
+// console.log(list.contains(1)); // true
+// console.log(list.contains(2)); // true
+// console.log(list.contains("C")); // false
+// console.log(list.contains("asd")); // false
 
-console.log("------list------");
-console.log(list);
+// console.log("------list------");
+// console.log(list);
+
+console.log(list.find(1));
+console.log(list.find("A"));
+console.log(list.find("B"));
+console.log(list.find(3));
