@@ -107,6 +107,33 @@ class LinkedList {
     string += "null";
     return string;
   }
+
+  // Extra credit //
+
+  insertAt(value, index) {
+    if (index < 0 || index > this.length) return null;
+    let newNode = new Node(value);
+    if (index === 0) {
+      newNode.next = this.head;
+      this.head = newNode;
+    } else {
+      let previousNode = this.at(index - 1);
+      newNode.next = previousNode.next;
+      previousNode.next = newNode;
+    }
+    this.length++;
+  }
+
+  removeAt(index) {
+    if (index < 0 || index >= this.length) return null;
+    if (index === 0) {
+      this.head = this.head.next;
+    } else {
+      let previousNode = this.at(index - 1);
+      previousNode.next = previousNode.next.next;
+    }
+    this.length--;
+  }
 }
 
 class Node {
@@ -125,34 +152,44 @@ list.prepend(3); // 3, A, B, C
 list.prepend(2); // 2, 3, A, B, C
 list.prepend(1); // 1, 2, 3, A, B, C
 
-// console.log("------getHead------");
-// console.log(list.getHead()); // 1
+console.log("------getHead------");
+console.log(list.getHead()); // 1
 
-// console.log("------getTail------");
-// console.log(list.getTail()); // C
+console.log("------getTail------");
+console.log(list.getTail()); // C
 
-// console.log("------size------");
-// console.log(list.size()); // 6
+console.log("------size------");
+console.log(list.size()); // 6
 
-// console.log("------at(index)------");
-// console.log(list.at(0)); // 1
-// console.log(list.at(5)); // C
+console.log("------at(index)------");
+console.log(list.at(0)); // 1
+console.log(list.at(5)); // C
 
-// console.log("------pop------");
-// console.log(list.pop()); // 1, 2, 3, A, B, C >>> 1, 2, 3, A, B
+console.log("------pop------");
+console.log(list.pop()); // 1, 2, 3, A, B, C >>> 1, 2, 3, A, B
 
-// console.log("------contains------");
-// console.log(list.contains(1)); // true
-// console.log(list.contains(2)); // true
-// console.log(list.contains("C")); // false
-// console.log(list.contains("asd")); // false
+console.log("------contains------");
+console.log(list.contains(1)); // true
+console.log(list.contains(2)); // true
+console.log(list.contains("C")); // false
+console.log(list.contains("asd")); // false
 
-// console.log(list.find(1)); // 0
-// console.log(list.find("B")); // 4
-// console.log(list.find(4)); // null
-// console.log(list.find("D")); // null
+console.log("------find------");
+console.log(list.find(1)); // 0
+console.log(list.find("B")); // 4
+console.log(list.find(4)); // null
+console.log(list.find("D")); // null
 
-// console.log(list.toString()); //(1) -> (2) -> (3) -> (A) -> (B) -> (C) -> null
+console.log("------toString------");
+console.log(list.toString()); //(1) -> (2) -> (3) -> (A) -> (B) -> (C) -> null
 
-// console.log("------list------");
-// console.log(list);
+list.removeAt(0); //1, 2, 3, A, B, C >>> 2, 3, A, B, C
+list.removeAt(4); //2, 3, A, B, C >>> 2, 3, A, B
+list.removeAt(7); //null
+list.removeAt(8); //null
+
+list.insertAt(999, 0); //2, 3, A, B >>> 999, 2, 3, A, B
+list.insertAt("Tail", 5); //999, 2, 3, A, B >>> 999, 2, 3, A, B, "Tail"
+
+console.log("------list------");
+console.log(list);
